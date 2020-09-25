@@ -8,8 +8,9 @@ const checkbox = (props) => (
       id={props.value}
       value={props.value}
       checked={props.checked}
+      onChange={props.changed}
     ></input>
-    <label for={props.value}>{props.label}</label>
+    <label htmlFor={props.value}>{props.label}</label>
   </div>
 );
 
