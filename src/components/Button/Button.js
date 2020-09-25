@@ -6,6 +6,7 @@ const button = (props) => (
     className={[classes.Button, classes[props.btnType]].join(" ")}
     disabled={props.disabled}
     onClick={props.clicked}
+    type={props.type}
   >
     {props.children}
   </button>
