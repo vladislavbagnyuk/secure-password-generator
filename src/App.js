@@ -1,26 +1,44 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import cryptoRandomString from "crypto-random-string";
+import copy from "copy-to-clipboard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Button from "./components/Button/Button";
+import classes from "./App.module.css";
+
+class App extends Component {
+  state = {
+    password: "",
+  };
+
+  componentDidMount() {
+    this.generatePassword();
+  }
+
+  generatePassword = () => {
+    const password = cryptoRandomString({
+      length: 15,
+      type: "ascii-printable",
+    });
+    this.setState({
+      password: password,
+    });
+  };
+
+  copyToClipboard = () => {
+    copy(this.state.password);
+  };
+
+  render() {
+    return (
+      <div className={classes.App}>
+        <p className={classes.Password}>{this.state.password}</p>
+        <Button btnType="link" clicked={this.copyToClipboard}>
+          Copy to clipboard
+        </Button>
+        <Button clicked={this.generatePassword}>Generate</Button>
+      </div>
+    );
+  }
 }
 
 export default App;
