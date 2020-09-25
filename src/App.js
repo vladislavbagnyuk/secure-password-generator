@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import cryptoRandomString from "crypto-random-string";
 import copy from "copy-to-clipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "./components/Button/Button";
 import classes from "./App.module.css";
@@ -31,9 +33,10 @@ class App extends Component {
   render() {
     return (
       <div className={classes.App}>
+        <h1>Generate secure password</h1>
         <p className={classes.Password}>{this.state.password}</p>
         <Button btnType="link" clicked={this.copyToClipboard}>
-          Copy to clipboard
+          <FontAwesomeIcon icon={faCopy} /> Copy to clipboard
         </Button>
         <Button clicked={this.generatePassword}>Generate</Button>
       </div>

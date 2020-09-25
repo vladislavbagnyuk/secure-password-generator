@@ -1,9 +1,15 @@
 .App {
   width: 300px;
   text-align: center;
-  padding: 24px;
+  padding: 24px 0;
 }
-
+.App h1 {
+  color: #0eb9b9;
+  font-weight: 600;
+  font-size: 28px;
+  margin-top: 0;
+  line-height: 35px;
+}
 .Password {
   font-size: 24px;
   margin-top: 0;
