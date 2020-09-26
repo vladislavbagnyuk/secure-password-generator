@@ -17,6 +17,7 @@ class App extends Component {
       { label: "Numbers", value: "numbers", checked: true },
       { label: "Symbols", value: "symbols", checked: true },
     ],
+    alert: null,
   };
 
   componentDidMount() {
@@ -27,6 +28,22 @@ class App extends Component {
     checkboxes = this.state.checkboxes,
     length = this.state.passwordLength
   ) => {
+    if (!length) {
+      length = 0;
+    }
+    length = parseInt(length);
+    if (length <= 0) {
+      this.setState({
+        alert: "Password must be longer than 0",
+      });
+      return;
+    }
+    if (length > 1000) {
+      this.setState({
+        alert: "Do you really need this long password?",
+      });
+      return;
+    }
     let password = null;
     let args = null;
 
@@ -111,10 +128,15 @@ class App extends Component {
     if (args) {
       args.length = length;
       password = cryptoRandomString(args);
+      this.setState({
+        password: password,
+        alert: null,
+      });
+    } else {
+      this.setState({
+        alert: "Select at least one option",
+      });
     }
-    this.setState({
-      password: password,
-    });
   };
 
   copyToClipboard = () => {
@@ -137,21 +159,21 @@ class App extends Component {
   };
 
   onLengthChange = (event) => {
-    const length = parseInt(event.target.value);
     this.setState({
-      passwordLength: length,
+      passwordLength: event.target.value,
     });
-    this.generatePassword(this.state.checkboxes, length);
+    this.generatePassword(this.state.checkboxes, event.target.value);
   };
 
   render() {
     let password = "";
-    if (this.state.password) {
-      password = this.state.password;
-    } else {
+    if (this.state.alert) {
       password = (
-        <span className={classes.Red}>Select at least one option</span>
+        <span className={classes.Red}>{this.state.alert}</span>
+        // <span className={classes.Red}>Select at least one option</span>
       );
+    } else {
+      password = this.state.password;
     }
     return (
       <div className={classes.App}>
