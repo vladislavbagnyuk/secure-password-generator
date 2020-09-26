@@ -1,7 +1,6 @@
 .Button {
   font-family: "Open Sans", sans-serif;
   border: none;
-  font-size: 20px;
   color: white;
   background: linear-gradient(90deg, #0dc2c2 0%, #42e2e2 103.7%);
   padding: 6px 20px;
@@ -13,6 +12,7 @@
   display: flex;
   align-items: center;
   transition: 0.2s;
+  font-size: 20px;
 }
 
 .Button:focus {

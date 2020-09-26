@@ -11,6 +11,7 @@ import classes from "./App.module.css";
 class App extends Component {
   state = {
     password: "",
+    passwordLength: 15,
     checkboxes: [
       { label: "Letters", value: "letters", checked: true },
       { label: "Numbers", value: "numbers", checked: true },
@@ -22,7 +23,10 @@ class App extends Component {
     this.generatePassword();
   }
 
-  generatePassword = (checkboxes = this.state.checkboxes) => {
+  generatePassword = (
+    checkboxes = this.state.checkboxes,
+    length = this.state.passwordLength
+  ) => {
     let password = null;
     let args = null;
 
@@ -33,7 +37,6 @@ class App extends Component {
       !checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
       };
     }
@@ -45,7 +48,6 @@ class App extends Component {
       !checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         type: "numeric",
       };
     }
@@ -57,7 +59,6 @@ class App extends Component {
       checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         characters: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
       };
     }
@@ -69,7 +70,6 @@ class App extends Component {
       !checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         type: "alphanumeric",
       };
     }
@@ -81,7 +81,6 @@ class App extends Component {
       checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         characters:
           "!\"#$%&'()*+,-./:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
       };
@@ -94,7 +93,6 @@ class App extends Component {
       checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         characters: "!\"#$%&'()*+,-./0123456789:;<=>?@[\\]^_`{|}~",
       };
     }
@@ -106,12 +104,12 @@ class App extends Component {
       checkboxes[2].checked
     ) {
       args = {
-        length: 15,
         type: "ascii-printable",
       };
     }
 
     if (args) {
+      args.length = length;
       password = cryptoRandomString(args);
     }
     this.setState({
@@ -138,6 +136,14 @@ class App extends Component {
     this.generatePassword(newCheckboxes);
   };
 
+  onLengthChange = (event) => {
+    const length = parseInt(event.target.value);
+    this.setState({
+      passwordLength: length,
+    });
+    this.generatePassword(this.state.checkboxes, length);
+  };
+
   render() {
     let password = "";
     if (this.state.password) {
@@ -152,6 +158,15 @@ class App extends Component {
         <h1>Generate secure password</h1>
         <p className={classes.Password}>{password}</p>
         <form onSubmit={this.onFormSubmit}>
+          <div className={classes.InputContainer}>
+            <label htmlFor="length">Password length:</label>
+            <input
+              type="number"
+              id="length"
+              value={this.state.passwordLength}
+              onChange={this.onLengthChange}
+            />
+          </div>
           {this.state.checkboxes.map((checkbox, index) => (
             <Checkbox
               key={checkbox.value}
@@ -161,6 +176,7 @@ class App extends Component {
               changed={(event) => this.onCheckboxChanged(event, index)}
             />
           ))}
+
           <Button type="button" btnType="link" clicked={this.copyToClipboard}>
             <FontAwesomeIcon icon={faCopy} /> Copy to clipboard
           </Button>
