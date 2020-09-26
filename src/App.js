@@ -179,7 +179,22 @@ class App extends Component {
       <div className={classes.App}>
         <h1>Generate secure password</h1>
         <p className={classes.Password}>{password}</p>
+        <Button type="button" btnType="link" clicked={this.copyToClipboard}>
+          <FontAwesomeIcon icon={faCopy} /> Copy to clipboard
+        </Button>
         <form onSubmit={this.onFormSubmit}>
+          <Button type="submit">Generate</Button>
+          <div className={classes.Checkboxes}>
+            {this.state.checkboxes.map((checkbox, index) => (
+              <Checkbox
+                key={checkbox.value}
+                value={checkbox.value}
+                label={checkbox.label}
+                checked={checkbox.checked}
+                changed={(event) => this.onCheckboxChanged(event, index)}
+              />
+            ))}
+          </div>
           <div className={classes.InputContainer}>
             <label htmlFor="length">Password length:</label>
             <input
@@ -189,20 +204,6 @@ class App extends Component {
               onChange={this.onLengthChange}
             />
           </div>
-          {this.state.checkboxes.map((checkbox, index) => (
-            <Checkbox
-              key={checkbox.value}
-              value={checkbox.value}
-              label={checkbox.label}
-              checked={checkbox.checked}
-              changed={(event) => this.onCheckboxChanged(event, index)}
-            />
-          ))}
-
-          <Button type="button" btnType="link" clicked={this.copyToClipboard}>
-            <FontAwesomeIcon icon={faCopy} /> Copy to clipboard
-          </Button>
-          <Button type="submit">Generate</Button>
         </form>
       </div>
     );

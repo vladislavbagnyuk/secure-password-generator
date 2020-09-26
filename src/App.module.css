@@ -1,7 +1,7 @@
 .App {
-  width: 370px;
+  width: 375px;
   text-align: center;
-  padding: 24px;
+  padding: 30px;
 }
 .App h1 {
   color: #0eb9b9;
@@ -9,22 +9,29 @@
   font-size: 28px;
   margin-top: 0;
   line-height: 35px;
+  margin-bottom: 24pxem;
 }
 .Password {
-  font-size: 24px;
+  font-size: 28px;
   margin-top: 0;
   word-break: break-all;
+  margin-top: 30px;
+  margin-bottom: 0.5em;
 }
 .Red {
   color: #c20b0b;
   word-break: normal;
 }
-
 .InputContainer {
   display: flex;
   align-items: center;
   width: 70%;
-  margin: 0 auto 8px auto;
+  margin: 0 auto;
+}
+.Checkboxes {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  width: 100%;
 }
 .InputContainer label {
   flex: 1;

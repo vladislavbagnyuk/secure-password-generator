@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   transition: 0.2s;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .Button:focus {
@@ -30,37 +30,18 @@
   margin-right: 0.4em;
   height: 0.9em;
 }
-.green {
-  background: radial-gradient(100% 887.8% at 100% 0%, #20e39d 0%, #0eca86 100%);
-}
-
-.red {
-  background: radial-gradient(100% 887.8% at 100% 0%, #ea3a3a 0%, #c20b0b 100%);
-}
-
-.link,
-.linkRed {
+.link {
   background: none;
   box-shadow: none;
   padding-top: 0;
   padding-bottom: 0;
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-
-.link {
+  margin-top: 0;
+  margin-bottom: 1em;
   color: #0eb9b9;
+  font-size: 20px;
 }
-
 .link:hover {
   color: #42e2e2;
-}
-
-.linkRed {
-  color: #c20b0b;
-}
-.linkRed:hover {
-  color: #eb5858;
 }
 .link:focus,
 .link:active,
@@ -68,6 +49,6 @@
 .linkRed:focus,
 .linkRed:active,
 .linkRed:hover {
-  box-shadow: none;
-  transform: none;
+  box-shadow: none !important;
+  transform: none !important;
 }
