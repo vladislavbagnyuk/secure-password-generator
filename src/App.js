@@ -168,10 +168,7 @@ class App extends Component {
   render() {
     let password = "";
     if (this.state.alert) {
-      password = (
-        <span className={classes.Red}>{this.state.alert}</span>
-        // <span className={classes.Red}>Select at least one option</span>
-      );
+      password = <span className={classes.Red}>{this.state.alert}</span>;
     } else {
       password = this.state.password;
     }
