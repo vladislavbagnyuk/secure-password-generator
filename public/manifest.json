@@ -2,9 +2,12 @@
   "name": "Secure Password Generator",
   "version": "1.0.0",
   "manifest_version": 2,
-  "description": "Generate strong random passwords with letters, numbers, and symbols. This extension doesn't store your passwords anywhere - you can check the code at https://github.com/vladislavbagnyuk/secure-password-generator",
+  "description": "Generate strong random passwords with letters, numbers, and symbols",
   "icons": {
-    "512": "logo512.png"
+    "16": "icons/logo16x16.png",
+    "32": "icons/logo32x32.png",
+    "48": "icons/logo48x48.png",
+    "128": "icons/logo128x128.png"
   },
   "browser_action": {
     "default_icon": "logo512.png",
