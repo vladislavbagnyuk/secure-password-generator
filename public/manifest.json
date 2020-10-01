@@ -10,7 +10,7 @@
     "128": "icons/logo128x128.png"
   },
   "browser_action": {
-    "default_icon": "logo512.png",
+    "default_icon": "icons/logo128x128.png",
     "default_popup": "popup.html"
   }
 }
