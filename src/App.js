@@ -40,7 +40,7 @@ class App extends Component {
     }
     if (length > 1000) {
       this.setState({
-        alert: "Do you really need this long password?",
+        alert: "Do you really need a password this long?",
       });
       return;
     }
@@ -93,8 +93,8 @@ class App extends Component {
 
     // Letters + symbols
     if (
-      !checkboxes[0].checked &&
-      checkboxes[1].checked &&
+      checkboxes[0].checked &&
+      !checkboxes[1].checked &&
       checkboxes[2].checked
     ) {
       args = {
@@ -105,8 +105,8 @@ class App extends Component {
 
     // Numbers + symbols
     if (
-      checkboxes[0].checked &&
-      !checkboxes[1].checked &&
+      !checkboxes[0].checked &&
+      checkboxes[1].checked &&
       checkboxes[2].checked
     ) {
       args = {
